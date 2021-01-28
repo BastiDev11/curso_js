@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicios</title>
+
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: darkgray;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form * {
+      display: block;
+      margin: 0 auto 7px;
+    }
+
+    .result {
+      width: 200px;
+      height: 20px;
+      background-color: darkslategray;
+      color: white;
+      margin: 0;
+      display: none;
+    }
+
+    .result.result--visible {
+      display: block;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <form class="form">
+    <input type="text">
+    <input type="submit" value="Contar">
+  </form>
+  <p class="result" id="result"></p>
+
+
+
+
+  <!-- ********************************************************************************************** -->
+  <script>
+
+    const D = document
+
+    const parag = (txt) => {
+      const $P = D.getElementById('result')
+      $P.classList.add('result--visible')
+      $P.textContent = `El texto tiene ${txt.length} caracteres.`
+    }
+    const charNum = (txt) => (!txt)
+      ? console.log(`No ingresaste un texto`)
+      : parag(txt)
+
+
+
+    D.addEventListener('DOMContentLoaded', () => {
+
+      D.addEventListener('submit', e => {
+        e.preventDefault()
+        if (e.target.matches('.form')) {
+          try {
+            let text = D.querySelector('.form [type="text"]').value
+            const txt = text.split(' ').join('')
+            charNum(txt)
+
+          } catch (error) {
+            console.error('Debes ingresar un texto correcto')
+          }
+        }
+      })
+
+    })
+
+
+
+
+  </script>
+
+</body>
+
+</html>
